@@ -2,8 +2,8 @@ name: Daily Gold Digest
 
 on:
   schedule:
-    - cron: '30 2 * * *'  # 8:00 AM IST daily
-  workflow_dispatch:        # manual trigger button
+    - cron: '30 2 * * *'
+  workflow_dispatch:
 
 jobs:
   send-digest:
@@ -21,8 +21,9 @@ jobs:
 
       - name: Run gold digest
         env:
-          GOLD_API: ${{ secrets.GOLD_API }}
+          GOLD_API:   ${{ secrets.GOLD_API }}
           EMAIL_USER: ${{ secrets.EMAIL_USER }}
           EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
-          TO_EMAIL: ${{ secrets.TO_EMAIL }}
+          TO_EMAIL:   ${{ secrets.TO_EMAIL }}
+          GNEWS_API:  ${{ secrets.GNEWS_API }}
         run: python gold_digest.py
